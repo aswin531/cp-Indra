@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:indrajala/core/constants/api_constants.dart';
 import 'package:indrajala/core/theme/app_colors.dart';
 import 'package:indrajala/core/theme/app_textstyles.dart';
+import 'package:indrajala/features/details/presentation/widgets/subscriptioncheck.dart';
 import 'package:indrajala/features/home/bloc/indicator/indicator_bloc.dart';
 import 'package:indrajala/features/home/bloc/indicator/indicator_event.dart';
 import 'package:indrajala/features/home/bloc/indicator/indicator_state.dart';
@@ -36,69 +37,84 @@ class CarouselWidget extends StatelessWidget {
               builder: (BuildContext context) {
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(15), // Curves the whole carousel content
-                    child: Stack(
-                      children: [
-                        CachedNetworkImage(
-                          imageUrl: ApiConstants.imageBaseUrl + movie.smallMovieImage,
-                          placeholder: (context, url) => Image.asset(
-                              'assets/images/movieph.jpg',
-                              fit: BoxFit.cover),
-                          errorWidget: (context, url, error) {
-                            debugPrint('Error loading image: $error for URL: ${movie.smallMovieImage}');
-                            return const Icon(Icons.error);
-                          },
-                          fit: BoxFit.cover,
-                          width: double.infinity,
-                          height: double.infinity, // Ensures the image fills the space
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [
-                                Colors.black.withOpacity(0.6),
-                                Colors.transparent,
-                              ],
-                              begin: Alignment.bottomCenter,
-                              end: Alignment.topCenter,
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                SubscriptionCheckScreen(movieUrl: movie.url),
+                          ));
+                    },
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(
+                          15), // Curves the whole carousel content
+                      child: Stack(
+                        children: [
+                          CachedNetworkImage(
+                            imageUrl: ApiConstants.imageBaseUrl +
+                                movie.smallMovieImage,
+                            placeholder: (context, url) => Image.asset(
+                                'assets/images/movieph.jpg',
+                                fit: BoxFit.cover),
+                            errorWidget: (context, url, error) {
+                              debugPrint(
+                                  'Error loading image: $error for URL: ${movie.smallMovieImage}');
+                              return const Icon(Icons.error);
+                            },
+                            fit: BoxFit.cover,
+                            width: double.infinity,
+                            height: double
+                                .infinity, // Ensures the image fills the space
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  Colors.black.withOpacity(0.6),
+                                  Colors.transparent,
+                                ],
+                                begin: Alignment.bottomCenter,
+                                end: Alignment.topCenter,
+                              ),
                             ),
                           ),
-                        ),
-                        Positioned(
-                          bottom: 20,
-                          left: 20,
-                          right: 20,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Rating ${movie.rating}',
-                                style: IAppTextStyles.subtitle.copyWith(
-                                  color: IAppColors.yellow,
-                                  fontWeight: FontWeight.bold,
+                          Positioned(
+                            bottom: 20,
+                            left: 20,
+                            right: 20,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Rating ${movie.rating}',
+                                  style: IAppTextStyles.subtitle.copyWith(
+                                    color: IAppColors.yellow,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                movie.category.first,
-                                style: IAppTextStyles.bodyText.copyWith(
-                                  color: IAppColors.white,
-                                  fontWeight: FontWeight.bold,
+                                Text(
+                                  movie.category.first,
+                                  style: IAppTextStyles.bodyText.copyWith(
+                                    color: IAppColors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                movie.description,
-                                style: IAppTextStyles.localtext.copyWith(
-                                  color: IAppColors.white,
-                                  fontWeight: FontWeight.normal,
+                                Text(
+                                  movie.description,
+                                  style: IAppTextStyles.localtext.copyWith(
+                                    color: IAppColors.white,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                                  maxLines:
+                                      3, // Limiting the number of lines for better display
+                                  overflow: TextOverflow.ellipsis,
                                 ),
-                                maxLines: 3, // Limiting the number of lines for better display
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 );
@@ -119,8 +135,8 @@ class CarouselWidget extends StatelessWidget {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: Theme.of(context).primaryColor.withOpacity(
-                      state.currentIndex == entry.key ? 0.9 : 0.4,
-                    ),
+                          state.currentIndex == entry.key ? 0.9 : 0.4,
+                        ),
                   ),
                 );
               }).toList(),

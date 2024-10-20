@@ -1,8 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:indrajala/core/constants/api_constants.dart';
 import 'package:indrajala/core/theme/app_colors.dart';
 import 'package:indrajala/core/theme/app_textstyles.dart';
+import 'package:indrajala/core/theme/app_theme.dart';
 import 'package:indrajala/core/widgets/trailerpurchasebutton.dart';
 import 'package:indrajala/features/details/bloc/moviebloc/moviedetail_bloc.dart';
 import 'package:indrajala/features/details/bloc/moviebloc/moviedetail_event.dart';
@@ -14,7 +16,8 @@ class MovieDetailScreen extends StatelessWidget {
   final String movieUrl;
   final String trailerUrl;
 
-  const MovieDetailScreen({super.key, required this.movieUrl,required this.trailerUrl});
+  const MovieDetailScreen(
+      {super.key, required this.movieUrl, required this.trailerUrl});
 
   @override
   Widget build(BuildContext context) {
@@ -39,17 +42,25 @@ class MovieDetailScreen extends StatelessWidget {
               final movie = state.movie;
               String fullTrailerUrl =
                   '${ApiConstants.imageBaseUrl}${movie.trailerVideo}';
+
               print('Full Trailer : $fullTrailerUrl');
 
               return SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Image.network(
-                      ApiConstants.imageBaseUrl + movie.movieFullImage,
+                    CachedNetworkImage(
+                      imageUrl:
+                          ApiConstants.imageBaseUrl + movie.movieFullImage,
                       width: double.infinity,
                       height: 300,
                       fit: BoxFit.cover,
+                      placeholder: (context, url) =>
+                          const ShimmerPlaceholder.rectangular(
+                        width: double.infinity,
+                        height: 300,
+                        placeholderImage: 'indrajala/assets/images/movieph.jpg',
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(16.0),

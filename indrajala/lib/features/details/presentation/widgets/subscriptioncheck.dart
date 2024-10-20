@@ -31,7 +31,7 @@ class _SubscriptionCheckScreenState extends State<SubscriptionCheckScreen> {
   Future<void> _checkSubscriptionAndNavigate() async {
     try {
       final token = await _authLocalDatasource.getToken();
-      print('Token: $token');
+     // print('Token: $token');
 
       if (token == null) {
         print('No token found, navigating to MovieDetailScreen');
@@ -55,7 +55,7 @@ class _SubscriptionCheckScreenState extends State<SubscriptionCheckScreen> {
       }
 
       if (isSubscribed) {
-        print('videoooo url frommm SuBSCRIOTIONCHECK : $videoUrl');
+        print('videoooo url from SuBSCRIOTIONCHECK : $videoUrl');
         _navigateToWatchMovieScreen(videoUrl);
       } else {
         _navigateToMovieDetailScreen(videoUrl);

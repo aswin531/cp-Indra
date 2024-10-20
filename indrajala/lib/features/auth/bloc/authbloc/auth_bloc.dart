@@ -102,7 +102,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     final token = await getTokenUseCase();
     if (token != null) {
       emit(TokenRetrieved(token));
-      debugPrint('TOken In AUTHBLOC : $token');
+      //debugPrint('TOken In AUTHBLOC : $token');
     } else {
       emit(const AuthError("Token retrieval failed"));
     }
@@ -110,7 +110,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   Future<void> _onLogoutEvent(
       LogoutEvent event, Emitter<AuthState> emit) async {
-    print("Logging out...");
+   // print("Logging out...");
 
     await logoutUseCase();
     emit(LoggedOut());
