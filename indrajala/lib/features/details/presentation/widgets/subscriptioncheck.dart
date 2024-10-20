@@ -13,8 +13,7 @@ class SubscriptionCheckScreen extends StatefulWidget {
   const SubscriptionCheckScreen({super.key, required this.movieUrl});
 
   @override
-  _SubscriptionCheckScreenState createState() =>
-      _SubscriptionCheckScreenState();
+  _SubscriptionCheckScreenState createState() => _SubscriptionCheckScreenState();
 }
 
 class _SubscriptionCheckScreenState extends State<SubscriptionCheckScreen> {

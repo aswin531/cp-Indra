@@ -1,4 +1,4 @@
-import 'package:indrajala/features/details/data/models/movieDetail_model.dart';
+import 'package:indrajala/features/details/data/models/moviedetail_model.dart';
 import 'package:indrajala/features/details/domain/repository/moviedetail_repo.dart';
 
 class GetMovieDetailUsecase {

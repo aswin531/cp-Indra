@@ -95,7 +95,7 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(height: 8),
 
               // Category List
-              Container(
+              SizedBox(
                 height: 100,
                 child: ListView(
                   scrollDirection: Axis.horizontal,

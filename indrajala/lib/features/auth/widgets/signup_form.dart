@@ -82,8 +82,7 @@ class RegisterForm extends StatelessWidget {
   }
 
   Widget _buildPasswordField(
-      BuildContext context, TextEditingController controller, String label,
-      {TextEditingController? passwordController}) {
+      BuildContext context, TextEditingController controller, String label) {
     return BlocProvider(
       create: (_) => PasswordVisibilityBloc(),
       child: BlocBuilder<PasswordVisibilityBloc, PasswordVisibilityState>(

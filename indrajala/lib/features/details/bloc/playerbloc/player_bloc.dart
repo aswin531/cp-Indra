@@ -17,7 +17,9 @@ class VideoPlayerBloc extends Bloc<VideoPlayerEvent, VideoPlayerState> {
     emit(VideoPlayerLoading());
 
     try {
-      final videoPlayerController = VideoPlayerController.network(event.url);
+      
+      final videoPlayerController = VideoPlayerController.networkUrl(Uri.parse(event.url));
+      
       await videoPlayerController.initialize();
       final chewieController = ChewieController(
         videoPlayerController: videoPlayerController,

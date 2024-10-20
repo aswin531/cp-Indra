@@ -20,7 +20,7 @@ class SubscriptionBloc extends Bloc<SubscriptionEvent, SubscriptionState> {
       emit(state.copyWith(plans: plans));
     } catch (e) {
       // Handle error, maybe emit an error state
-      print('Error loading subscription plans: $e');
+      // print('Error loading subscription plans: $e');
     }
   }
 

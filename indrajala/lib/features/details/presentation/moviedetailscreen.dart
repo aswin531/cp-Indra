@@ -43,7 +43,7 @@ class MovieDetailScreen extends StatelessWidget {
               String fullTrailerUrl =
                   '${ApiConstants.imageBaseUrl}${movie.trailerVideo}';
 
-              print('Full Trailer : $fullTrailerUrl');
+              //print('Full Trailer : $fullTrailerUrl');
 
               return SingleChildScrollView(
                 child: Column(

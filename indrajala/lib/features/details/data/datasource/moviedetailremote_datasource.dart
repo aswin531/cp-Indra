@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:indrajala/core/constants/api_constants.dart';
 import 'package:indrajala/core/constants/http_statuscode.dart';
 import 'package:indrajala/core/exceptions/api_exceptions.dart';
-import 'package:indrajala/features/details/data/models/movieDetail_model.dart';
+import 'package:indrajala/features/details/data/models/moviedetail_model.dart';
 
 class MoviedetailremoteDatasource {
   MoviedetailremoteDatasource();
@@ -15,7 +15,6 @@ class MoviedetailremoteDatasource {
     );
     if (response.statusCode == HttpStatusCodes.ok) {
       final jsonResponse = json.decode(response.body);
-      print('Full JSON Response: $jsonResponse'); // Add this line for debugging
       return MovieDetailModel.fromJson(jsonResponse);
     } else {
       throw ApiException(response.statusCode,
@@ -24,11 +23,8 @@ class MoviedetailremoteDatasource {
   }
 
   Future<String> getMovieStreamUrl(String url) async {
-    print('Fetching stream URL for: $url');
     final response = await httpClient.get(
         Uri.parse('https://api.indrajala.in/api/user/DeltaFetchMovie/$url'));
-    print('Response status code: ${response.statusCode}');
-    print('Response body: ${response.body}');
 
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
@@ -38,7 +34,7 @@ class MoviedetailremoteDatasource {
       final completeUrl =
           'https://api.indrajala.in/public${movieVideo.startsWith('/') ? '' : '/'}$movieVideo';
 
-      print('Complete Movie URL: $completeUrl');
+     // print('Complete Movie URL: $completeUrl');
 
       if (completeUrl.isEmpty) {
         throw ApiException(response.statusCode,
@@ -53,10 +49,7 @@ class MoviedetailremoteDatasource {
 
   Future<String> getTrailerStreamUrl(String trailerUrl) async {
     try {
-      debugPrint("Requesting trailer URL from: $trailerUrl");
       final response = await httpClient.get(Uri.parse(trailerUrl));
-      debugPrint("Trailer URL response status: ${response.statusCode}");
-      debugPrint("Trailer URL response body: ${response.body}");
 
       if (response.statusCode == HttpStatusCodes.ok) {
         // Verify that the URL is actually a video URL

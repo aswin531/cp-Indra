@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:indrajala/features/details/data/models/movieDetail_model.dart';
+import 'package:indrajala/features/details/data/models/moviedetail_model.dart';
 
 abstract class MovieDetailState extends Equatable {
   @override

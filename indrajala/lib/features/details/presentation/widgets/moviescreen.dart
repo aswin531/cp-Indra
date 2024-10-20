@@ -36,10 +36,10 @@ class WatchMovieScreen extends StatelessWidget {
               return const Center(child: CircularProgressIndicator());
             } else if (state is MovieDetailLoaded) {
               final movie = state.movie;
-              print('MOVIEEE FROM QATCHMOVIE SCREEN " $movie');
-              final _movieStreamUrl = ApiConstants.imageBaseUrl +
-                  movie.movieVideo!.replaceFirst('//', '/');
-              print('MOVIEEE FROM QATCHMOVIE SCREEN " $_movieStreamUrl');
+            // //  print('MOVIEEE FROM QATCHMOVIE SCREEN " $movie');
+            //   final _movieStreamUrl = ApiConstants.imageBaseUrl +
+            //       movie.movieVideo!.replaceFirst('//', '/');
+            //   //print('MOVIEEE FROM QATCHMOVIE SCREEN " $_movieStreamUrl');
 
               return SingleChildScrollView(
                 child: Column(
@@ -99,9 +99,6 @@ class WatchMovieScreen extends StatelessWidget {
                             icon: Icons.play_arrow,
                             text: 'Watch Movie',
                             onPressed: () {
-                              print(
-                                  'Video URL being passed: $videoUrl'); 
-
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -132,12 +129,12 @@ class WatchMovieScreen extends StatelessWidget {
   Future<bool> isVideoUrlValid(String url) async {
     try {
       final response = await httpClient.head(Uri.parse(url));
-      print('URL check status code: ${response.statusCode}');
-      print('URL check content type: ${response.headers['content-type']}');
+      // print('URL check status code: ${response.statusCode}');
+      // print('URL check content type: ${response.headers['content-type']}');
       return response.statusCode == 200 &&
           (response.headers['content-type']?.contains('video') ?? false);
     } catch (e) {
-      print('Error checking URL: $e');
+//      print('Error checking URL: $e');
       return false;
     }
   }

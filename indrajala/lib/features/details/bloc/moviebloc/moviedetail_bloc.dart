@@ -35,7 +35,7 @@ class MovieDetailBloc extends Bloc<MovieDetailEvent, MovieDetailState> {
       final movie = await getMovieDetailUsecase(event.url);
       emit(MovieDetailLoaded(movie: movie));
     } catch (error) {
-        print('Error fetching movie details: $error');
+        //print('Error fetching movie details: $error');
 
       emit(MovieDetailError(message: 'Failed to load movie details'));
     }

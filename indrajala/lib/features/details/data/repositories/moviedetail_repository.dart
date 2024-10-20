@@ -2,7 +2,7 @@
 
 import 'package:indrajala/core/exceptions/api_exceptions.dart';
 import 'package:indrajala/features/details/data/datasource/moviedetailremote_datasource.dart';
-import 'package:indrajala/features/details/data/models/movieDetail_model.dart';
+import 'package:indrajala/features/details/data/models/moviedetail_model.dart';
 import 'package:indrajala/features/details/domain/repository/moviedetail_repo.dart';
 
 class MovieDetailRepositoryImpl implements MovieDetailRepository {
