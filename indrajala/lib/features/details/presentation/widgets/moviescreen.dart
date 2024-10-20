@@ -100,7 +100,7 @@ class WatchMovieScreen extends StatelessWidget {
                             text: 'Watch Movie',
                             onPressed: () {
                               print(
-                                  'Video URL being passed: $videoUrl'); // Add this line
+                                  'Video URL being passed: $videoUrl'); 
 
                               Navigator.push(
                                 context,

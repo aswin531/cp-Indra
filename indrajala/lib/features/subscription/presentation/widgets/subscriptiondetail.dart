@@ -189,7 +189,9 @@ class _SubscriptionDetailPageState extends State<SubscriptionDetailPage> {
           _openRazorpayCheckout(state.order); // Call the method here
         } else if (state is PaymentFailure) {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Payment failed: ${state.message}')),
+            const SnackBar(
+                content: Text(
+                    'Payment failed: Failed to create order')), //${state.message}
           );
         }
       },

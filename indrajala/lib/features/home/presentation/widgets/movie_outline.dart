@@ -53,19 +53,7 @@ class LatestReleasesWidget extends StatelessWidget {
                         builder: (context) =>
                             SubscriptionCheckScreen(movieUrl: movie.url),
                       ),
-                    );
-
-//                     Navigator.of(context)
-//                         .push(MaterialPageRoute(builder: (context) {
-//                       context
-//                           .read<MovieDetailBloc>()
-//                           .add(FetchMovieDetail(url: movie.url));
-// // return WatchMovieScreen(movieUrl: movie.url,);
-//                       return MovieDetailScreen(movieUrl: movie.url);
-//                     }
-//                     ),
-
-//                     );
+                    );//
                   },
                   child: MovieCard(
                     title: movie.movieName,
@@ -80,3 +68,22 @@ class LatestReleasesWidget extends StatelessWidget {
     );
   }
 }
+
+
+
+
+
+
+
+
+//                     Navigator.of(context)
+//                         .push(MaterialPageRoute(builder: (context) {
+//                       context
+//                           .read<MovieDetailBloc>()
+//                           .add(FetchMovieDetail(url: movie.url));
+// // return WatchMovieScreen(movieUrl: movie.url,);
+//                       return MovieDetailScreen(movieUrl: movie.url);
+//                     }
+//                     ),
+
+//                     );

@@ -1,4 +1,7 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
+import 'package:indrajala/core/theme/app_colors.dart';
 import 'package:indrajala/features/auth/data/datasources/authlocal_datasource.dart';
 import 'package:indrajala/features/details/data/datasource/moviedetailremote_datasource.dart';
 import 'package:indrajala/features/details/presentation/moviedetailscreen.dart';
@@ -28,7 +31,7 @@ class _SubscriptionCheckScreenState extends State<SubscriptionCheckScreen> {
   Future<void> _checkSubscriptionAndNavigate() async {
     try {
       final token = await _authLocalDatasource.getToken();
-      print('Token: $token'); // Log the token
+      print('Token: $token');
 
       if (token == null) {
         print('No token found, navigating to MovieDetailScreen');
@@ -78,7 +81,7 @@ class _SubscriptionCheckScreenState extends State<SubscriptionCheckScreen> {
         builder: (context) => MovieDetailScreen(
           movieUrl: widget.movieUrl,
           trailerUrl: trailerUrl ??
-              '', // Provide a default empty string or handle null case
+              '', // Provided a default empty string or handle null case
         ),
       ),
     );
@@ -87,7 +90,8 @@ class _SubscriptionCheckScreenState extends State<SubscriptionCheckScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      backgroundColor: IAppColors.bgBlack,
+      body:const Center(
         child: CircularProgressIndicator(),
       ),
     );

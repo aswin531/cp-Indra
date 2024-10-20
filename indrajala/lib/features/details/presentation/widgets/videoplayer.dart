@@ -3,6 +3,8 @@
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
+//VideoPlayerScreen
+
 
 class VideoPlayerScreen extends StatefulWidget {
   final String trailerUrl;
@@ -27,8 +29,10 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
 
   Future<void> _initializePlayer() async {
     try {
-      _videoPlayerController = VideoPlayerController.network(widget.trailerUrl);
-
+      _videoPlayerController = VideoPlayerController.networkUrl(
+        Uri.parse(widget.trailerUrl),
+        videoPlayerOptions: VideoPlayerOptions(mixWithOthers: true),
+      );
       await _videoPlayerController.initialize();
 
       if (mounted) {
@@ -37,16 +41,23 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
             videoPlayerController: _videoPlayerController,
             autoPlay: true,
             looping: false,
+            showControls: true,
+            materialProgressColors: ChewieProgressColors(
+              playedColor: Colors.red,
+              handleColor: Colors.red,
+              backgroundColor: Colors.grey,
+              bufferedColor: Colors.white,
+            ),
+            placeholder: Container(
+              color: Colors.black,
+            ),
+            autoInitialize: true,
             errorBuilder: (context, errorMessage) {
               return Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                    // Text('Error: $errorMessage',
-                    //     style: TextStyle(color: Colors.white)),
+                    const CircularProgressIndicator(),
                     const SizedBox(height: 8),
                     ElevatedButton(
                       onPressed: () => _retryInitialization(),
@@ -56,6 +67,10 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                 ),
               );
             },
+            customControls: const MaterialControls(
+              showPlayButton: true,
+              //showLoadingOnInitialize: false,
+            ),
           );
           _isLoading = false;
         });
@@ -102,11 +117,6 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                 ? Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      // Text(
-                      //   'Failed to load video:\n$_errorMessage',
-                      //   style: TextStyle(color: Colors.white),
-                      //   textAlign: TextAlign.center,
-                      // ),
                       const SizedBox(height: 16),
                       ElevatedButton(
                         onPressed: _retryInitialization,
@@ -115,7 +125,10 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                     ],
                   )
                 : _chewieController != null
-                    ? Chewie(controller: _chewieController!)
+                    ? AspectRatio(
+                        aspectRatio: _videoPlayerController.value.aspectRatio,
+                        child: Chewie(controller: _chewieController!),
+                      )
                     : const Text('Failed to initialize video player',
                         style: TextStyle(color: Colors.white)),
       ),

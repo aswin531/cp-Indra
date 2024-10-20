@@ -13,7 +13,7 @@ class MovieRemoteDataSource {
 
       if (response.statusCode == HttpStatusCodes.ok) {
         List jsonResponse = json.decode(response.body);
-        print(jsonResponse.toString());
+      //  print(jsonResponse.toString());
 
         return jsonResponse.map((data) => Movie.fromJson(data)).toList();
       } else {

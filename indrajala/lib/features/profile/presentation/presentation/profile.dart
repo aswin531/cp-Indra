@@ -132,7 +132,10 @@ class ProfilePage extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 16),
             ),
             onPressed: () => Navigator.of(context).pop(),
-            child: Text('GO BACK HOME', style: IAppTextStyles.bodyText),
+            child: Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: Text('GO BACK HOME', style: IAppTextStyles.subtitle),
+            ),
           ),
         ),
         const SizedBox(width: 16),
@@ -145,7 +148,10 @@ class ProfilePage extends StatelessWidget {
             onPressed: () {
               Navigator.pushNamed(context, IAppRoutes.subScription);
             },
-            child: Text('SUBSCRIBE NOW', style: IAppTextStyles.bodyText),
+            child: Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: Text('SUBSCRIBE NOW', style: IAppTextStyles.subtitle),
+            ),
           ),
         ),
       ],

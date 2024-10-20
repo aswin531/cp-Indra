@@ -28,7 +28,7 @@ class HomeScreenTest extends StatelessWidget {
         }
       },
       child: Scaffold(
-          backgroundColor: IAppColors.bgBlack,
+          backgroundColor: IAppColors.black,
           key: _scaffoldKey,
           appBar: AppBar(
             backgroundColor: IAppColors.transparent,
