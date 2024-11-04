@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:indrajala/core/theme/app_colors.dart';
 import 'package:indrajala/core/theme/app_textstyles.dart';
+import 'package:indrajala/core/widgets/custom_snackbar.dart';
 import 'package:indrajala/features/auth/bloc/authbloc/auth_bloc.dart';
 import 'package:indrajala/features/auth/bloc/authbloc/auth_event.dart';
 import 'package:indrajala/features/auth/bloc/authbloc/auth_state.dart';
@@ -24,10 +26,7 @@ class RegisterForm extends StatelessWidget {
         if (state is Authenticated) {
           Navigator.pushReplacementNamed(context, '/home');
         } else if (state is AuthError) {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(state.message),
-            backgroundColor: Colors.red,
-          ));
+          showCustomSnackbar(context, state.message, IAppColors.red);
         }
       },
       child: Padding(

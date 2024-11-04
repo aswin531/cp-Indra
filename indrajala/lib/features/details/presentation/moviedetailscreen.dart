@@ -5,6 +5,7 @@ import 'package:indrajala/core/constants/api_constants.dart';
 import 'package:indrajala/core/theme/app_colors.dart';
 import 'package:indrajala/core/theme/app_textstyles.dart';
 import 'package:indrajala/core/theme/app_theme.dart';
+import 'package:indrajala/core/widgets/custom_snackbar.dart';
 import 'package:indrajala/core/widgets/trailerpurchasebutton.dart';
 import 'package:indrajala/features/details/bloc/moviebloc/moviedetail_bloc.dart';
 import 'package:indrajala/features/details/bloc/moviebloc/moviedetail_event.dart';
@@ -30,9 +31,7 @@ class MovieDetailScreen extends StatelessWidget {
         child: BlocConsumer<MovieDetailBloc, MovieDetailState>(
           listener: (context, state) {
             if (state is TrailerError) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(state.message)),
-              );
+              showCustomSnackbar(context, state.message, IAppColors.red);
             }
           },
           builder: (context, state) {
@@ -59,7 +58,7 @@ class MovieDetailScreen extends StatelessWidget {
                           const ShimmerPlaceholder.rectangular(
                         width: double.infinity,
                         height: 300,
-                        placeholderImage: 'indrajala/assets/images/movieph.jpg',
+                        placeholderImage: 'assets/images/playstore.png',
                       ),
                     ),
                     Padding(

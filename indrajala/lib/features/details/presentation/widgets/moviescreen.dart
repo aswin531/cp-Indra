@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:indrajala/core/constants/api_constants.dart';
 import 'package:indrajala/core/theme/app_colors.dart';
 import 'package:indrajala/core/theme/app_textstyles.dart';
+import 'package:indrajala/core/widgets/custom_snackbar.dart';
 import 'package:indrajala/core/widgets/trailerpurchasebutton.dart';
 import 'package:indrajala/features/details/presentation/widgets/videoplayer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,9 +27,7 @@ class WatchMovieScreen extends StatelessWidget {
         child: BlocConsumer<MovieDetailBloc, MovieDetailState>(
           listener: (context, state) {
             if (state is MovieDetailError) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(state.message)),
-              );
+              showCustomSnackbar(context, state.message, IAppColors.red);
             }
           },
           builder: (context, state) {
@@ -36,10 +35,10 @@ class WatchMovieScreen extends StatelessWidget {
               return const Center(child: CircularProgressIndicator());
             } else if (state is MovieDetailLoaded) {
               final movie = state.movie;
-            // //  print('MOVIEEE FROM QATCHMOVIE SCREEN " $movie');
-            //   final _movieStreamUrl = ApiConstants.imageBaseUrl +
-            //       movie.movieVideo!.replaceFirst('//', '/');
-            //   //print('MOVIEEE FROM QATCHMOVIE SCREEN " $_movieStreamUrl');
+              // //  print('MOVIEEE FROM QATCHMOVIE SCREEN " $movie');
+              //   final _movieStreamUrl = ApiConstants.imageBaseUrl +
+              //       movie.movieVideo!.replaceFirst('//', '/');
+              //   //print('MOVIEEE FROM QATCHMOVIE SCREEN " $_movieStreamUrl');
 
               return SingleChildScrollView(
                 child: Column(
@@ -103,8 +102,7 @@ class WatchMovieScreen extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => VideoPlayerScreen(
-                                    trailerUrl:
-                                        videoUrl,
+                                    trailerUrl: videoUrl,
                                   ),
                                 ),
                               );

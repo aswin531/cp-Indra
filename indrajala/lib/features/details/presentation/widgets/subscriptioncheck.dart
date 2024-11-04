@@ -1,5 +1,4 @@
 // ignore_for_file: avoid_print
-
 import 'package:flutter/material.dart';
 import 'package:indrajala/core/theme/app_colors.dart';
 import 'package:indrajala/features/auth/data/datasources/authlocal_datasource.dart';
@@ -13,6 +12,7 @@ class SubscriptionCheckScreen extends StatefulWidget {
   const SubscriptionCheckScreen({super.key, required this.movieUrl});
 
   @override
+  // ignore: library_private_types_in_public_api
   _SubscriptionCheckScreenState createState() => _SubscriptionCheckScreenState();
 }
 

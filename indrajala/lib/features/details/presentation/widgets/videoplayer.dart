@@ -1,10 +1,9 @@
 // ignore_for_file: library_private_types_in_public_api
-
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
+import 'package:indrajala/core/theme/app_colors.dart';
 import 'package:video_player/video_player.dart';
 //VideoPlayerScreen
-
 
 class VideoPlayerScreen extends StatefulWidget {
   final String trailerUrl;
@@ -105,10 +104,10 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: IAppColors.bgBlack,
       appBar: AppBar(
-        backgroundColor: Colors.black,
-        title: const Text('Video Player'),
+        backgroundColor: IAppColors.transparent,
+        //title: const Text('Video Player'),
       ),
       body: Center(
         child: _isLoading

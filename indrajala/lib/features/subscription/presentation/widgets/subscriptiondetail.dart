@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:indrajala/core/constants/api_constants.dart';
 import 'package:indrajala/core/theme/app_colors.dart';
 import 'package:indrajala/core/theme/app_textstyles.dart';
+import 'package:indrajala/core/widgets/custom_snackbar.dart';
 import 'package:indrajala/features/subscription/bloc/paymentbloc/payment_bloc.dart';
 import 'package:indrajala/features/subscription/bloc/paymentbloc/payment_event.dart';
 import 'package:indrajala/features/subscription/bloc/paymentbloc/payment_state.dart';
@@ -61,18 +62,15 @@ class _SubscriptionDetailPageState extends State<SubscriptionDetailPage> {
   }
 
   void _handlePaymentError(PaymentFailureResponse response) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-          content:
-              Text('Payment failed: ${response.message ?? 'Unknown error'}')),
-    );
+    showCustomSnackbar(
+        context,
+        'Payment failed: ${response.message ?? 'Unknown error'}',
+        IAppColors.red);
   }
 
   void _handleExternalWallet(ExternalWalletResponse response) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-          content: Text('External wallet selected: ${response.walletName}')),
-    );
+    showCustomSnackbar(context,
+        'External wallet selected: ${response.walletName}', IAppColors.red);
   }
 
   void _openRazorpayCheckout(Order order) {
@@ -95,9 +93,7 @@ class _SubscriptionDetailPageState extends State<SubscriptionDetailPage> {
       _razorpay.open(options);
     } catch (e) {
       //  print('Razorpay Error: $e'); // Log the error for debugging
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error: ${e.toString()}')),
-      );
+      showCustomSnackbar(context, 'Error: ${e.toString()}', IAppColors.red);
     }
   }
 
@@ -188,11 +184,8 @@ class _SubscriptionDetailPageState extends State<SubscriptionDetailPage> {
           // Implement Razorpay payment here using the order details
           _openRazorpayCheckout(state.order); // Call the method here
         } else if (state is PaymentFailure) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-                content: Text(
-                    'Payment failed: Failed to create order')), //${state.message}
-          );
+          showCustomSnackbar(context, 'Payment failed: Failed to create order',
+              IAppColors.red);
         }
       },
       builder: (context, state) {

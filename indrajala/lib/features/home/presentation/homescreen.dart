@@ -23,7 +23,6 @@ class HomeScreenTest extends StatelessWidget {
       listener: (context, state) {
         if (state is LoggedOut) {
           // print("Navigating to login screen...");
-
           Navigator.pushReplacementNamed(context, '/login');
         }
       },

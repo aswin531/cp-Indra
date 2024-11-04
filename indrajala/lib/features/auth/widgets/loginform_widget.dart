@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:indrajala/core/helper/connectivity_helper.dart';
+import 'package:indrajala/core/theme/app_colors.dart';
 import 'package:indrajala/core/theme/app_textstyles.dart';
+import 'package:indrajala/core/widgets/custom_snackbar.dart';
 import 'package:indrajala/features/auth/bloc/authbloc/auth_bloc.dart';
 import 'package:indrajala/features/auth/bloc/authbloc/auth_event.dart';
 import 'package:indrajala/features/auth/bloc/authbloc/auth_state.dart';
@@ -25,10 +28,7 @@ class LoginForm extends StatelessWidget {
         if (state is Authenticated) {
           Navigator.pushReplacementNamed(context, '/home');
         } else if (state is AuthError) {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(state.message),
-            backgroundColor: Colors.red,
-          ));
+          showCustomSnackbar(context, state.message, IAppColors.red);
         }
       },
       child: Padding(
@@ -48,8 +48,12 @@ class LoginForm extends StatelessWidget {
               const SizedBox(height: 16),
               _buildPasswordField(context, _passwordController, 'Password'),
               const SizedBox(height: 32),
-              FormWidgets.elevatedButton(context, 'Login', () {
+              FormWidgets.elevatedButton(context, 'Login', () async {
                 if (_formKey.currentState!.validate()) {
+                  bool isConnected = await checkInternetConnection();
+                  if (!isConnected) {
+                    showCustomSnackbar(context, 'No internet connection. Please check your connection.', IAppColors.red);
+                  }
                   final email = _emailController.text;
                   final password = _passwordController.text;
                   context.read<AuthBloc>().add(LoginEvent(email, password));
@@ -64,8 +68,7 @@ class LoginForm extends StatelessWidget {
                         builder: (context) => const RegisterScreen()),
                   );
                 },
-                child:
-                     Text('Register Now', style: IAppTextStyles.subtitle),
+                child: Text('Register Now', style: IAppTextStyles.subtitle),
               ),
               TextButton(
                 onPressed: () {
@@ -75,8 +78,8 @@ class LoginForm extends StatelessWidget {
                         builder: (context) => PasswordResetScreen()),
                   );
                 },
-                child:  Text('Forget Password ?',
-                    style: IAppTextStyles.subtitle),
+                child:
+                    Text('Forget Password ?', style: IAppTextStyles.subtitle),
               ),
             ],
           ),
@@ -113,7 +116,9 @@ class LoginForm extends StatelessWidget {
                     padding: const EdgeInsets.all(4.0),
                     child: IconButton(
                       icon: Icon(
-                        state.isVisible ? Icons.visibility : Icons.visibility_off,
+                        state.isVisible
+                            ? Icons.visibility
+                            : Icons.visibility_off,
                         color: Colors.white,
                       ),
                       onPressed: () {
