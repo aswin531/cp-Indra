@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:indrajala/features/auth/presentation/login_screen.dart';
 import 'package:indrajala/features/auth/presentation/passwordreset_screen.dart';
 import 'package:indrajala/features/auth/presentation/signup_screen.dart';
+import 'package:indrajala/features/bottomnavbar/page/bottom_nav_bar.dart';
 import 'package:indrajala/features/home/presentation/homescreen.dart';
 import 'package:indrajala/features/profile/presentation/presentation/profile.dart';
 import 'package:indrajala/features/splash/presentation/splash_screen.dart';
@@ -12,9 +13,10 @@ class IAppRoutes {
   static const String login = '/login';
   static const String register = '/register';
   static const String passwordReset = '/passwordReset';
+  static const String bottomnavbar = '/bottomnavbar';
   static const String home = '/home';
   static const String profile = '/profile';
-  static const String subScription = '/subScription'; 
+  static const String subScription = '/subScription';
   static const String subScriptionDetailPage = '/subScriptionDetailPage';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -27,6 +29,8 @@ class IAppRoutes {
         return MaterialPageRoute(builder: (_) => const RegisterScreen());
       case passwordReset:
         return MaterialPageRoute(builder: (_) => PasswordResetScreen());
+      case bottomnavbar:
+        return MaterialPageRoute(builder: (_) => MainScreen());
       case home:
         return MaterialPageRoute(builder: (_) => HomeScreenTest());
       case profile:
@@ -34,8 +38,8 @@ class IAppRoutes {
       case subScription:
         return MaterialPageRoute(builder: (_) => const SubscriptionPage());
       case subScriptionDetailPage:
-        // return MaterialPageRoute(
-        //     builder: (_) =>  SubscriptionDetailPage());
+      // return MaterialPageRoute(
+      //     builder: (_) =>  SubscriptionDetailPage());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

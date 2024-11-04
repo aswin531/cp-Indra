@@ -12,6 +12,7 @@ import 'package:indrajala/features/auth/domain/usecases/login_usecases.dart';
 import 'package:indrajala/features/auth/domain/usecases/logout_usecase.dart';
 import 'package:indrajala/features/auth/domain/usecases/signup_usecase.dart';
 import 'package:indrajala/features/auth/domain/usecases/tokenexpiry_usecase.dart';
+import 'package:indrajala/features/bottomnavbar/bloc/bloc.dart';
 import 'package:indrajala/features/details/bloc/moviebloc/moviedetail_bloc.dart';
 import 'package:indrajala/features/details/data/datasource/moviedetailremote_datasource.dart';
 import 'package:indrajala/features/details/data/repositories/moviedetail_repository.dart';
@@ -75,6 +76,8 @@ Future<void> init() async {
         sl<GetTokenUseCase>(),
         sl<LogoutUseCase>(),
       ));
+
+  sl.registerFactory(() => BottomNavBarBloc());
 
   //Visibility--------------------------------------------------------------
   sl.registerFactory(() => PasswordVisibilityBloc());

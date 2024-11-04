@@ -5,7 +5,6 @@ import 'package:indrajala/features/auth/bloc/authbloc/auth_state.dart';
 import 'package:indrajala/features/home/bloc/movie/movie_bloc.dart';
 import 'package:indrajala/features/home/bloc/movie/movie_event.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:indrajala/features/home/presentation/widgets/drawer.dart';
 import 'package:indrajala/features/home/presentation/widgets/movie_displaywidget.dart';
 
 class HomeScreenTest extends StatelessWidget {
@@ -29,20 +28,20 @@ class HomeScreenTest extends StatelessWidget {
       child: Scaffold(
           backgroundColor: IAppColors.black,
           key: _scaffoldKey,
-          appBar: AppBar(
-            backgroundColor: IAppColors.transparent,
-            leading: IconButton(
-              icon: const Icon(
-                Icons.menu,
-                color: IAppColors.pink,
-              ),
-              onPressed: () {
-                _scaffoldKey.currentState?.openDrawer();
-              },
-            ),
-          ),
-          drawer: HomeDrawer(),
-          body: const MovieDisplayWidget()),
+          // appBar: AppBar(
+          //   backgroundColor: IAppColors.transparent,
+          //   leading: IconButton(
+          //     icon: const Icon(
+          //       Icons.menu,
+          //       color: IAppColors.pink,
+          //     ),
+          //     onPressed: () {
+          //       _scaffoldKey.currentState?.openDrawer();
+          //     },
+          //   ),
+          // ),
+          //drawer: HomeDrawer(),
+          body: const SafeArea(child:  MovieDisplayWidget())),
     );
   }
 }

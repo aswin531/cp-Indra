@@ -6,6 +6,7 @@ import 'package:indrajala/core/theme/app_colors.dart';
 import 'package:indrajala/features/auth/bloc/authbloc/auth_bloc.dart';
 import 'package:indrajala/features/auth/bloc/authbloc/auth_event.dart';
 import 'package:indrajala/features/auth/bloc/visibilitybloc/visibility_bloc.dart';
+import 'package:indrajala/features/bottomnavbar/bloc/bloc.dart';
 import 'package:indrajala/features/details/bloc/moviebloc/moviedetail_bloc.dart';
 import 'package:indrajala/features/home/bloc/indicator/indicator_bloc.dart';
 import 'package:indrajala/features/home/bloc/movie/movie_bloc.dart';
@@ -20,6 +21,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider(
+          create: (context) => sl<BottomNavBarBloc>(),
+        ),
         BlocProvider(
           create: (context) => sl<AuthBloc>()..add(InitializeAuthEvent()),
         ),
