@@ -13,7 +13,7 @@ class MainScreen extends StatelessWidget {
     HomeScreenTest(),
     const SubscriptionPage(),
     const ProfilePage(),
-    const SettingsScreen()
+     SettingsScreen()
   ];
 
   MainScreen({super.key});
