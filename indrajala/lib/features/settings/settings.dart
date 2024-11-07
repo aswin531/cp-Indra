@@ -10,7 +10,6 @@ import 'package:indrajala/features/settings/widgets/logout_button.dart';
 import 'package:indrajala/features/settings/widgets/settings_group.dart';
 import 'package:indrajala/features/settings/widgets/settings_tile.dart';
 
-
 class SettingsScreen extends StatelessWidget {
   final LaunchUrlUseCase _launchUrlUseCase = LaunchUrlUseCase();
 
@@ -21,11 +20,9 @@ class SettingsScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: IAppColors.bgBlack,
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           "Settings",
-          style: TextStyle(
-            fontWeight: FontWeight.w600,
-          ),
+          style: TextStyle(fontWeight: FontWeight.w600, color: IAppColors.grey),
         ),
         backgroundColor: IAppColors.black,
       ),
