@@ -9,4 +9,7 @@ class IAppColors {
   static Color yellow = Colors.yellow;
   static Color bgBlack = Colors.black;
   static Color grey = Colors.grey;
+  static Color blue = Colors.blue;
+  static Color green = Colors.green;
+  //static List<MaterialAccentColor> accent = Colors.accents;
 }

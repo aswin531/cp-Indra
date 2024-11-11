@@ -13,52 +13,78 @@ class MovieDetailContent extends StatelessWidget {
   final MovieDetailModel movie;
   final String trailerUrl;
 
-  const MovieDetailContent({super.key, required this.movie, required this.trailerUrl});
+  const MovieDetailContent(
+      {super.key, required this.movie, required this.trailerUrl});
 
   @override
   Widget build(BuildContext context) {
     String fullTrailerUrl = '${ApiConstants.imageBaseUrl}${movie.trailerVideo}';
 
-    return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          MoviePoster(imageUrl: ApiConstants.imageBaseUrl + movie.movieFullImage),
-          MovieDetails(movie: movie),
-          const SizedBox(height: 20),
-          Trailerpurchasebutton(
-            color: Colors.blue,
-            iconColor: IAppColors.white,
-            textStyle: IAppTextStyles.bodyText,
-            icon: Icons.play_arrow,
-            text: 'Watch Trailer',
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => VideoPlayerScreen(trailerUrl: fullTrailerUrl),
-                ),
-              );
-            },
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Expanded(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.only(
+                bottom: 80), 
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                MoviePoster(
+                    imageUrl: ApiConstants.imageBaseUrl + movie.movieFullImage),
+                MovieDetails(movie: movie),
+                const SizedBox(height: 20),
+              ],
+            ),
           ),
-          const SizedBox(height: 20),
-          Trailerpurchasebutton(
-            iconColor: IAppColors.bgBlack,
-            textStyle: IAppTextStyles.bodyTextBlack,
-            color: Colors.yellow,
-            icon: Icons.workspace_premium,
-            text: 'Purchase Premium',
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const SubscriptionPage(),
+        ),
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: Container(
+            color: IAppColors.black,
+            padding: const EdgeInsets.all(10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                TrailerPurchaseButton(
+                  primaryColor: IAppColors.bgBlack,
+                  secondaryColor: IAppColors.bgBlack,
+                  isPremium: false,
+                  iconColor: IAppColors.white,
+                  textStyle: IAppTextStyles.bodyText,
+                  icon: Icons.play_arrow,
+                  text: 'Watch Trailer',
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            VideoPlayerScreen(trailerUrl: fullTrailerUrl),
+                      ),
+                    );
+                  },
                 ),
-              );
-            },
+                TrailerPurchaseButton(
+                  primaryColor: IAppColors.yellow,
+                  secondaryColor: IAppColors.yellow,
+                  isPremium: false,
+                  iconColor: IAppColors.bgBlack,
+                  textStyle: IAppTextStyles.bodyTextBlack,
+                  text: 'Play Movie',
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const SubscriptionPage(),
+                      ),
+                    );
+                  },
+                ),
+              ],
+            ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

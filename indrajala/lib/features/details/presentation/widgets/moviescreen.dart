@@ -91,8 +91,8 @@ class WatchMovieScreen extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(height: 20),
-                          Trailerpurchasebutton(
-                            color: Colors.green,
+                          TrailerPurchaseButton(
+                            primaryColor:IAppColors.green ,secondaryColor:IAppColors.green,isPremium: false,
                             iconColor: IAppColors.white,
                             textStyle: IAppTextStyles.bodyText,
                             icon: Icons.play_arrow,

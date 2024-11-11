@@ -25,7 +25,7 @@ class IAppTextStyles {
 
   static TextStyle bodyTextBlack = TextStyle(
     fontFamily: 'Roboto',
-    fontSize: 24, // For Roboto Bold 24 pt
+    fontSize: 22, // For Roboto Bold 24 pt
     fontWeight: FontWeight.bold,
     color: IAppColors.bgBlack,
   );
@@ -48,6 +48,34 @@ class IAppTextStyles {
     fontFamily: 'Roboto',
     fontSize: 20, // For Roboto Medium 15 pt
     fontWeight: FontWeight.bold,
+    color: IAppColors.white,
+  );
+
+  static TextStyle detailLabel = TextStyle(
+    fontFamily: 'Roboto',
+    fontSize: 18, // Smaller font size for labels
+    fontWeight: FontWeight.w500,
+    color: IAppColors.grey,
+  );
+
+  static TextStyle detailValue = TextStyle(
+    fontFamily: 'Roboto',
+    fontSize: 18, // Consistent with label size
+    fontWeight: FontWeight.w400,
+    color: IAppColors.white,
+  );
+
+  static TextStyle appBarTitle = TextStyle(
+    fontFamily: 'Roboto',
+    fontSize: 22, // For AppBar title
+    fontWeight: FontWeight.bold,
+    color: IAppColors.white,
+  );
+
+  static TextStyle subheading = TextStyle(
+    fontFamily: 'Roboto',
+    fontSize: 18, // For subheadings
+    fontWeight: FontWeight.w600,
     color: IAppColors.white,
   );
 }
