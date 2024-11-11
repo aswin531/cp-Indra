@@ -21,26 +21,13 @@ class HomeScreenTest extends StatelessWidget {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is LoggedOut) {
-          // print("Navigating to login screen...");
           Navigator.pushReplacementNamed(context, '/login');
         }
       },
       child: Scaffold(
           backgroundColor: IAppColors.black,
           key: _scaffoldKey,
-          // appBar: AppBar(
-          //   backgroundColor: IAppColors.transparent,
-          //   leading: IconButton(
-          //     icon: const Icon(
-          //       Icons.menu,
-          //       color: IAppColors.pink,
-          //     ),
-          //     onPressed: () {
-          //       _scaffoldKey.currentState?.openDrawer();
-          //     },
-          //   ),
-          // ),
-          //drawer: HomeDrawer(),
+          
           body: const SafeArea(child:  MovieDisplayWidget())),
     );
   }

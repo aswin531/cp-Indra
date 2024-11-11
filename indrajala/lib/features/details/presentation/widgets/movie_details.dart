@@ -73,25 +73,29 @@ class MovieDetails extends StatelessWidget {
       children: [
         Icon(
           icon,
-          color: IAppColors.white,
+          color: IAppColors.pink,
           size: 28,
         ),
         const SizedBox(height: 12),
-        Text(
-          title,
-          style: TextStyle(
-            color: IAppColors.white,
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        const SizedBox(height: 4),
-        Text(
-          subtitle,
-          style: TextStyle(
-            color: IAppColors.white.withOpacity(0.8),
-            fontSize: 14,
-          ),
+        Row(
+          children: [
+            Text(
+              title,
+              style: TextStyle(
+                color: IAppColors.yellow,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(width: 8),
+            Text(
+              subtitle,
+              style: TextStyle(
+                color: IAppColors.white.withOpacity(0.8),
+                fontSize: 14,
+              ),
+            ),
+          ],
         ),
       ],
     );
@@ -101,14 +105,7 @@ class MovieDetails extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'Story',
-          style: TextStyle(
-            color: IAppColors.white,
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        
         const SizedBox(height: 16),
         Text(
           movie.description,
@@ -126,17 +123,9 @@ class MovieDetails extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'Cast',
-          style: TextStyle(
-            color: IAppColors.white,
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
         const SizedBox(height: 16),
         SizedBox(
-          height: 40,
+          height: 50,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             itemCount: movie.starring.length,
@@ -146,7 +135,7 @@ class MovieDetails extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 decoration: BoxDecoration(
                   color: IAppColors.white.withOpacity(0.15),
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(15),
                 ),
                 alignment: Alignment.center,
                 child: Text(

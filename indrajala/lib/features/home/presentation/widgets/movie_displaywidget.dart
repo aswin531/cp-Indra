@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:indrajala/core/theme/app_textstyles.dart';
 import 'package:indrajala/core/widgets/himmer_loading.dart';
 import 'package:indrajala/features/home/bloc/movie/movie_bloc.dart';
 import 'package:indrajala/features/home/bloc/movie/movie_state.dart';
@@ -17,7 +18,14 @@ class MovieDisplayWidget extends StatelessWidget {
       builder: (context, state) {
         return switch (state) {
           MovieLoading() => const ShimmerLoading(),
-          MovieError() => Center(child: Text('Error: ${state.message}')),
+          MovieError() => Center(
+              child: Text(
+                state.message.contains('No Internet')
+                    ? 'No internet connection. Please check your network.'
+                    : 'Oops, something went wrong!',
+                style: IAppTextStyles.subtitle,
+              ),
+            ),
           MovieLoaded() => _buildLoadedContent(state),
           _ => const Center(child: Text('No movies found.')),
         };

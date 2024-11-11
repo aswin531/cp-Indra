@@ -12,14 +12,21 @@ class MovieLoaded extends MovieState {
   final List<Movie> upcomingMovies;
   final List<Movie> carouselImages;
 
+  MovieLoaded(
+      {required this.trendingMovies,
+      required this.topFiveMovies,
+      required this.upcomingMovies,
+      required this.carouselImages});
+}
 
-  MovieLoaded({
-    required this.trendingMovies,
-    required this.topFiveMovies,
+class UpComingMovieLoaded extends MovieState {
+  final List<Movie> upcomingMovies;
+
+  UpComingMovieLoaded({
     required this.upcomingMovies,
-    required this.carouselImages
   });
 }
+
 class MovieError extends MovieState {
   final String message;
 

@@ -30,18 +30,25 @@ class CustomBottomNav extends StatelessWidget {
                 elevation: 0,
                 backgroundColor: Colors.transparent,
                 currentIndex: state.selectedIndex,
-                onTap: (index) =>
-                    context.read<BottomNavBarBloc>().add(SelectedTabEvent(index)),
+                onTap: (index) => context
+                    .read<BottomNavBarBloc>()
+                    .add(SelectedTabEvent(index)),
                 selectedItemColor: IAppColors.pink,
                 unselectedItemColor: IAppColors.grey.withOpacity(0.5),
                 showSelectedLabels: true,
                 showUnselectedLabels: true,
                 type: BottomNavigationBarType.fixed,
                 items: [
-                  _buildNavItem(Icons.home_rounded, 'Home', state.selectedIndex == 0),
-                  _buildNavItem(Icons.subscriptions_rounded, 'Subscribe', state.selectedIndex == 1),
-                  _buildNavItem(Icons.person_rounded, 'Profile', state.selectedIndex == 2),
-                  _buildNavItem(Icons.settings_rounded, 'Settings', state.selectedIndex == 3),
+                  _buildNavItem(
+                      Icons.home_rounded, 'Home', state.selectedIndex == 0),
+                  _buildNavItem(
+                      Icons.local_movies, 'Upcoming', state.selectedIndex == 1),
+                  _buildNavItem(Icons.subscriptions_rounded, 'Subscribe',
+                      state.selectedIndex == 2),
+                  _buildNavItem(Icons.person_rounded, 'Profile',
+                      state.selectedIndex == 3),
+                  _buildNavItem(Icons.settings_rounded, 'Settings',
+                      state.selectedIndex == 4),
                 ],
                 selectedLabelStyle: const TextStyle(
                   fontSize: 12,
@@ -59,7 +66,8 @@ class CustomBottomNav extends StatelessWidget {
     );
   }
 
-  BottomNavigationBarItem _buildNavItem(IconData icon, String label, bool isSelected) {
+  BottomNavigationBarItem _buildNavItem(
+      IconData icon, String label, bool isSelected) {
     return BottomNavigationBarItem(
       icon: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
