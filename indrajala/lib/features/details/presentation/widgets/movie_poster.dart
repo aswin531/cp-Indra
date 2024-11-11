@@ -1,13 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:indrajala/core/theme/app_theme.dart';
-
 class MoviePoster extends StatelessWidget {
   final String imageUrl;
+  final String movieName; 
 
   const MoviePoster({
     super.key,
     required this.imageUrl,
+    required this.movieName,  
   });
 
   @override
@@ -70,13 +71,14 @@ class MoviePoster extends StatelessWidget {
           ),
         ),
 
-        // Gradient overlay at the bottom
+        // Gradient overlay at the bottom with movie name
         Positioned(
           bottom: 0,
           left: 0,
           right: 0,
           height: 150,
           child: Container(
+            padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.bottomCenter,
@@ -87,6 +89,21 @@ class MoviePoster extends StatelessWidget {
                   Colors.transparent,
                 ],
               ),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Displaying the movie name
+                Text(
+                  movieName,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
             ),
           ),
         ),

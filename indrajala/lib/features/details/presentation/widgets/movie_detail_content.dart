@@ -25,12 +25,12 @@ class MovieDetailContent extends StatelessWidget {
       children: [
         Expanded(
           child: SingleChildScrollView(
-            padding: const EdgeInsets.only(
-                bottom: 80), 
+            padding: const EdgeInsets.only(bottom: 80),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 MoviePoster(
+                    movieName: movie.movieName,
                     imageUrl: ApiConstants.imageBaseUrl + movie.movieFullImage),
                 MovieDetails(movie: movie),
                 const SizedBox(height: 20),
