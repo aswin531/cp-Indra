@@ -5,6 +5,7 @@ import 'package:indrajala/core/theme/app_colors.dart';
 import 'package:indrajala/core/widgets/custom_alertbox.dart';
 import 'package:indrajala/features/auth/bloc/authbloc/auth_bloc.dart';
 import 'package:indrajala/features/auth/bloc/authbloc/auth_event.dart';
+import 'package:indrajala/features/auth/presentation/login_screen.dart';
 import 'package:indrajala/features/home/domain/usecases/launchurl_usecase.dart';
 import 'package:indrajala/features/settings/widgets/logout_button.dart';
 import 'package:indrajala/features/settings/widgets/settings_group.dart';
@@ -68,7 +69,10 @@ class SettingsScreen extends StatelessWidget {
         cancelButtonText: "No",
         onConfirm: () {
           context.read<AuthBloc>().add(LogoutEvent());
-          Navigator.of(context).pop();
+          Navigator.of(context).pop();Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const LoginScreen()),
+        );
         },
         onCancel: () {
           Navigator.of(context).pop();

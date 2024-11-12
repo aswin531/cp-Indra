@@ -18,17 +18,18 @@ class CustomValidator {
     if (value == null || value.isEmpty) {
       return 'Password is required';
     }
-    if (value.length < 8) {
-      return 'Password must be at least 8 characters long';
+    if (value.length < 6) {
+      return 'Password must be at least 6 characters long';
     }
-    if (!RegExp(r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$').hasMatch(value)) {
-      return 'Password must contain at least 1 letter and 1 number';
+    if (!RegExp(r'^.{6}$').hasMatch(value)) {
+      return 'Password must be 6 characters long';
     }
     return null;
   }
 
   // Confirm Password Validator
-  static String? validateConfirmPassword(String? password, String? confirmPassword) {
+  static String? validateConfirmPassword(
+      String? password, String? confirmPassword) {
     if (confirmPassword == null || confirmPassword.isEmpty) {
       return 'Confirm password is required';
     }

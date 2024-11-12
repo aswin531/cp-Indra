@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:indrajala/core/helper/connectivity_helper.dart';
 import 'package:indrajala/core/theme/app_colors.dart';
 import 'package:indrajala/core/theme/app_textstyles.dart';
+import 'package:indrajala/core/validators/custom_validators.dart';
 import 'package:indrajala/core/widgets/custom_snackbar.dart';
 import 'package:indrajala/features/auth/bloc/authbloc/auth_bloc.dart';
 import 'package:indrajala/features/auth/bloc/authbloc/auth_event.dart';
@@ -26,7 +27,7 @@ class LoginForm extends StatelessWidget {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is Authenticated) {
-          Navigator.pushReplacementNamed(context, '/home');
+          Navigator.pushReplacementNamed(context, '/bottomnavbar');
         } else if (state is AuthError) {
           showCustomSnackbar(context, state.message, IAppColors.red);
         }
@@ -43,7 +44,7 @@ class LoginForm extends StatelessWidget {
               FormWidgets.textField(
                 _emailController,
                 'Email',
-                // validator: (value) => CustomValidator.validateEmail(value),
+                validator: (value) => CustomValidator.validateEmail(value),
               ),
               const SizedBox(height: 16),
               _buildPasswordField(context, _passwordController, 'Password'),
@@ -52,7 +53,10 @@ class LoginForm extends StatelessWidget {
                 if (_formKey.currentState!.validate()) {
                   bool isConnected = await checkInternetConnection();
                   if (!isConnected) {
-                    showCustomSnackbar(context, 'No internet connection. Please check your connection.', IAppColors.red);
+                    showCustomSnackbar(
+                        context,
+                        'No internet connection. Please check your connection.',
+                        IAppColors.red);
                   }
                   final email = _emailController.text;
                   final password = _passwordController.text;
@@ -100,6 +104,7 @@ class LoginForm extends StatelessWidget {
               Text(label, style: IAppTextStyles.subtitle),
               const SizedBox(height: 8),
               TextFormField(
+               // validator: (value) => CustomValidator.validatePassword(value),
                 controller: controller,
                 obscureText: !state.isVisible,
                 style: IAppTextStyles.bodyText.copyWith(color: Colors.white),

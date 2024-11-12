@@ -10,37 +10,6 @@ class ActionButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Expanded(
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(12),
-            child: Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Colors.blue.withOpacity(0.8),
-                    Colors.blue.withOpacity(0.9),
-                  ],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
-              ),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.transparent,
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  shadowColor: Colors.transparent,
-                ),
-                onPressed: () {
-                  Navigator.of(context).pushNamedAndRemoveUntil(
-                    IAppRoutes.bottomnavbar,
-                    (route) => false,
-                  );
-                },
-                child: Text('GO BACK HOME', style: IAppTextStyles.subtitle),
-              ),
-            ),
-          ),
-        ),
         const SizedBox(width: 16),
         Expanded(
           child: ClipRRect(

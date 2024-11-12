@@ -64,7 +64,8 @@ class _SubscriptionDetailPageState extends State<SubscriptionDetailPage> {
   void _handlePaymentError(PaymentFailureResponse response) {
     showCustomSnackbar(
         context,
-        'Payment failed: ${response.message ?? 'Unknown error'}',
+        'Payment cancelled',
+        //${response.message ?? 'Unknown error'}',
         IAppColors.red);
   }
 

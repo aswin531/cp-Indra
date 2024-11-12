@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:indrajala/core/theme/app_colors.dart';
 import 'package:indrajala/core/theme/app_textstyles.dart';
+import 'package:indrajala/core/validators/custom_validators.dart';
 import 'package:indrajala/core/widgets/custom_snackbar.dart';
 import 'package:indrajala/features/auth/bloc/authbloc/auth_bloc.dart';
 import 'package:indrajala/features/auth/bloc/authbloc/auth_event.dart';
@@ -24,7 +25,7 @@ class RegisterForm extends StatelessWidget {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is Authenticated) {
-          Navigator.pushReplacementNamed(context, '/home');
+          Navigator.pushReplacementNamed(context, '/bottomnavbar');
         } else if (state is AuthError) {
           showCustomSnackbar(context, state.message, IAppColors.red);
         }
@@ -39,16 +40,12 @@ class RegisterForm extends StatelessWidget {
             children: [
               Text('Register', style: IAppTextStyles.heading1),
               const SizedBox(height: 32),
-              FormWidgets.textField(
-                _nameController, 'Name',
-                // validator: (value) =>
-                //     CustomValidator.validateUsername(value)
-              ),
+              FormWidgets.textField(_nameController, 'Name',
+                  validator: (value) =>
+                      CustomValidator.validateUsername(value)),
               const SizedBox(height: 16),
-              FormWidgets.textField(
-                _emailController, 'Email',
-                //validator: (value) => CustomValidator.validateEmail(value)
-              ),
+              FormWidgets.textField(_emailController, 'Email',
+                  validator: (value) => CustomValidator.validateEmail(value)),
               const SizedBox(height: 16),
               _buildPasswordField(context, _passwordController, 'Password'),
               // _buildPasswordField(
@@ -92,6 +89,7 @@ class RegisterForm extends StatelessWidget {
               Text(label, style: IAppTextStyles.subtitle),
               const SizedBox(height: 8),
               TextFormField(
+                validator: (value) => CustomValidator.validatePassword(value),
                 controller: controller,
                 obscureText: !state.isVisible,
                 style: IAppTextStyles.bodyText.copyWith(color: Colors.white),
