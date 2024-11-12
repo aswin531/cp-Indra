@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:indrajala/core/helper/connectivity_helper.dart';
 import 'package:indrajala/features/home/bloc/movie/movie_event.dart';
@@ -31,13 +30,13 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
     emit(MovieLoading());
 
     try {
-      debugPrint('Fetching movies...');
+      //debugPrint('Fetching movies...');
 
       final trendingMoviesFuture = getTopTrendingMoviesUseCase();
       final topFiveMoviesFuture = getTopFiveMoviesUseCase();
       final upcomingMoviesFuture = getUpcomingMoviesUseCase();
       final carouselImagesFuture = getCarouselImagesUseCase();
-      debugPrint('Started all movie fetch requests...');
+      //debugPrint('Started all movie fetch requests...');
 
       final results = await Future.wait([
         trendingMoviesFuture,
@@ -52,10 +51,10 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
         upcomingMovies: results[2],
         carouselImages: results[3],
       ));
-      debugPrint('Movies loaded successfully.');
+      //debugPrint('Movies loaded successfully.');
     } catch (e, stacktrace) {
-      debugPrint('Error occurred while fetching movies: $e');
-      debugPrint('Stacktrace: $stacktrace');
+      //debugPrint('Error occurred while fetching movies: $e');
+      //debugPrint('Stacktrace: $stacktrace');
       if (!await checkInternetConnection()) {
         emit(MovieError('No Internet Connection'));
       } else {
@@ -71,11 +70,11 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
     try {
       final upcomigMovies = await getUpcomingMoviesUseCase();
       emit(UpComingMovieLoaded(upcomingMovies: upcomigMovies));
-      debugPrint(
-          'Upcoming movies loaded successfully.${upcomigMovies.toString()}');
+      //debugPrint(
+          ///'Upcoming movies loaded successfully.${upcomigMovies.toString()}');
     } catch (e, stacktrace) {
-      debugPrint('Error occurred while fetching upcoming movies: $e');
-      debugPrint('Stacktrace: $stacktrace');
+      //debugPrint('Error occurred while fetching upcoming movies: $e');
+      //debugPrint('Stacktrace: $stacktrace');
       if (!await checkInternetConnection()) {
         emit(MovieError('No Internet Connection'));
       } else {

@@ -1,4 +1,3 @@
-// ignore_for_file: avoid_print
 import 'package:flutter/material.dart';
 import 'package:indrajala/core/theme/app_colors.dart';
 import 'package:indrajala/features/auth/data/datasources/authlocal_datasource.dart';
@@ -33,34 +32,28 @@ class _SubscriptionCheckScreenState extends State<SubscriptionCheckScreen> {
      // print('Token: $token');
 
       if (token == null) {
-        print('No token found, navigating to MovieDetailScreen');
-        // _navigateToMovieDetailScreen();
+      
         return;
       }
 
       final isSubscribed =
           await _movieDataSource.checkSubscriptionStatus(token);
-      print('Subscription status: $isSubscribed');
 
       String videoUrl;
       if (isSubscribed) {
-        print(
-            'User is subscribed, fetching full movie URL ===== ${widget.movieUrl}');
+        
         videoUrl = await _movieDataSource.getMovieStreamUrl(widget.movieUrl);
-        print('/*/*/*/*/*/*/**/**/*/*/ ===== $videoUrl}');
       } else {
-        print('User is not subscribed, fetching trailer URL');
+        //print('User is not subscribed, fetching trailer URL');
         videoUrl = await _movieDataSource.getTrailerStreamUrl(widget.movieUrl);
       }
 
       if (isSubscribed) {
-        print('videoooo url from SuBSCRIOTIONCHECK : $videoUrl');
         _navigateToWatchMovieScreen(videoUrl);
       } else {
         _navigateToMovieDetailScreen(videoUrl);
       }
     } catch (e) {
-      print('Error checking subscription or fetching video URL: $e');
       _navigateToMovieDetailScreen(null);
     }
   }

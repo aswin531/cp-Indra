@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:flutter/material.dart';
 import 'package:indrajala/core/constants/api_constants.dart';
 import 'package:indrajala/core/constants/http_statuscode.dart';
 import 'package:indrajala/core/exceptions/api_exceptions.dart';
@@ -19,8 +18,8 @@ class AuthRemoteDatasource {
 
       final responseData = json.decode(response.body);
       if (response.statusCode == HttpStatusCodes.ok) {
-        debugPrint(responseData.toString());
-        debugPrint(response.statusCode.toString());
+        // debugPrint(responseData.toString());
+        // debugPrint(response.statusCode.toString());
         return AuthResponse.fromJson(responseData);
       } else {
         throw ApiException(response.statusCode,
